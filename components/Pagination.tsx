@@ -1,14 +1,17 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 function Pagination(props: { elements: number; currPage: number }) {
 	const { elements, currPage } = props;
 
 	const router = useRouter();
-	if (currPage > elements || currPage < 1) {
-		router.push('/404');
-	}
+	useEffect(() => {
+		if (currPage > elements || currPage < 1) {
+			router.push('/404');
+		}
+	});
 
 	return (
 		<div className='join my-5'>

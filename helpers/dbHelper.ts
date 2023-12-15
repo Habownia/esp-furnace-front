@@ -3,26 +3,27 @@ import { MongoClient, ObjectId } from 'mongodb';
 import type { SensorData } from '@/types/sensorData';
 
 export async function getData(page = 1, limit = 5) {
-	// // setup MongoClient
-	// const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
+	// setup MongoClient
+	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
 
-	// // db, collection name
-	// const db = client.db(`${process.env.DB_NAME}`);
-	// const dataCollection = db.collection(`${process.env.COLLECTION_NAME}`);
+	// db, collection name
+	const db = client.db(`${process.env.DB_NAME}`);
+	const dataCollection = db.collection(`${process.env.COLLECTION_NAME}`);
 
-	// // query
-	// const result = (await dataCollection
-	// 	.find()
-	// 	.skip((page - 1) * limit)
-	// 	.limit(limit)
-	// 	.toArray()) as SensorData[];
-	// // log query result
-	// console.log(result);
+	// query
+	const result = (await dataCollection
+		.find()
+		.skip((page - 1) * limit)
+		.limit(limit)
+		.toArray()) as SensorData[];
+	// log query result
+	console.log(result);
 
-	// // close connection
-	// client.close();
+	// close connection
+	client.close();
 
-	// return result;
+	return result;
+
 	// Dummy Data
 	const RESULT = [
 		{
