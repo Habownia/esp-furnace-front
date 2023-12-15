@@ -14,6 +14,7 @@ import {
 import { Line } from 'react-chartjs-2';
 
 import { SensorData } from '@/types/sensorData';
+import { getDayTime } from '@/helpers/getTime';
 
 ChartJS.register(
 	CategoryScale,
@@ -71,27 +72,6 @@ export const options = {
 		},
 	},
 };
-
-// Returns Date from _id of MongoDB document
-function getTimestamp(_id: string): Date {
-	const timestamp = _id.toString().substring(0, 8);
-	//creates Date from unix timestamp
-	const date = new Date(parseInt(timestamp, 16) * 1000);
-
-	return date;
-}
-
-// Returns array of objects {_id, date}
-function getDayTime(data: SensorData[]) {
-	const date = data.map((elem) => {
-		return {
-			_id: elem._id,
-			date: getTimestamp(elem._id.toString()),
-		};
-	});
-
-	return date;
-}
 
 function Chart(props: { dataDb: SensorData[] }) {
 	const dates = getDayTime(props.dataDb);
