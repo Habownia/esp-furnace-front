@@ -1,24 +1,29 @@
 import { MongoClient, ObjectId } from 'mongodb';
-import { useEffect, useState } from 'react';
 
 import type { SensorData } from '@/types/sensorData';
 
-export async function getData(limit: number = 30, skip: number = 0) {
+export async function getData(limit = 5, page = 1) {
+	// setup MongoClient
 	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
 
+	// db, collection name
 	const db = client.db(`${process.env.DB_NAME}`);
-	const ordersCollection = db.collection(`${process.env.COLLECTION_NAME}`);
+	const dataCollection = db.collection(`${process.env.COLLECTION_NAME}`);
 
-	const result = (await ordersCollection
+	// query
+	const result = (await dataCollection
 		.find()
-		.skip(skip)
+		.skip((page - 1) * limit)
 		.limit(limit)
 		.toArray()) as SensorData[];
+	// log query result
 	console.log(result);
 
+	// close connection
 	client.close();
 
 	return result;
+	// Dummy Data
 	const RESULT = [
 		{
 			_id: new ObjectId('657aad1d41089476f5b05e98'),
@@ -82,4 +87,19 @@ export async function getData(limit: number = 30, skip: number = 0) {
 		},
 	];
 	return RESULT;
+}
+
+export async function getDocumentCount() {
+	// setup MongoClient
+	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
+
+	// db, collection name
+	const db = client.db(`${process.env.DB_NAME}`);
+	const dataCollection = db.collection(`${process.env.COLLECTION_NAME}`);
+
+	const result = await dataCollection.countDocuments({});
+
+	client.close();
+
+	return result;
 }

@@ -1,5 +1,5 @@
 import { MongoClient, ObjectId } from 'mongodb';
-import { getData } from '@/helpers/getData';
+import { getData } from '@/helpers/dbHelper';
 
 import type { SensorData } from '@/types/sensorData';
 
