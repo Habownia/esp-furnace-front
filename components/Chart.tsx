@@ -29,12 +29,12 @@ export const options = {
 	responsive: true,
 	plugins: {
 		legend: {
-			position: 'top' as const,
+			position: 'bottom' as const,
 		},
 	},
 	scales: {
 		x: {
-			position: 'bottom' as const,
+			position: 'top' as const,
 			title: {
 				display: true,
 				text: 'Godzina',
@@ -63,7 +63,7 @@ export const options = {
 			ticks: {
 				// stepSize: 0.1,
 				callback: (value: any) => {
-					return value + '%';
+					return value + ' ppm';
 				},
 			},
 		},
@@ -91,34 +91,27 @@ function getDayTime(data: SensorData[]) {
 	return date;
 }
 
-function getLabels(data: SensorData[]) {
-	const labels = getDayTime(data).map((elem) => {
-		const d = elem.date;
-
-		return `${d.getHours()}:${d.getMinutes()}`;
-	});
-	return labels;
-}
-
 function Chart(props: { dataDb: SensorData[] }) {
-	const labels = getLabels(props.dataDb);
+	const dates = getDayTime(props.dataDb);
 
 	const data = {
-		labels,
+		labels: dates.map(
+			(elem) => `${elem.date.getHours()}:${elem.date.getMinutes()}`
+		),
 		datasets: [
 			{
 				label: 'Temperatura',
-				data: labels.map(
-					(elem, index) => props.dataDb[index].temperature.value
+				data: dates.map(
+					(_elem, index) => props.dataDb[index].temperature.value
 				),
 				borderColor: 'rgb(255, 99, 132)',
 				backgroundColor: 'rgba(255, 99, 132, 0.5)',
 			},
 			{
-				label: 'LPG',
+				label: 'Dym',
 				yAxisID: 'y1',
-				data: labels.map(
-					(elem, index) => props.dataDb[index].smoke.value[1]
+				data: dates.map(
+					(_elem, index) => props.dataDb[index].smoke.value[2]
 				),
 				borderColor: 'rgb(53, 162, 235)',
 				backgroundColor: 'rgba(53, 162, 235, 0.5)',

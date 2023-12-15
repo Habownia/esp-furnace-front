@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import type { SensorData } from '@/types/sensorData';
 
-export async function getData() {
+export async function getData(limit: number = 0, skip: number = 0) {
 	// const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
 
 	// const db = client.db(`${process.env.DB_NAME}`);
@@ -11,6 +11,7 @@ export async function getData() {
 
 	// const result = (await ordersCollection
 	// 	.find()
+	//	.skip(0)
 	// 	.limit(20)
 	// 	.toArray()) as SensorData[];
 	// console.log(result);
