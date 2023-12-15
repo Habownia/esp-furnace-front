@@ -3,22 +3,22 @@ import { useEffect, useState } from 'react';
 
 import type { SensorData } from '@/types/sensorData';
 
-export async function getData(limit: number = 0, skip: number = 0) {
-	// const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
+export async function getData(limit: number = 30, skip: number = 0) {
+	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
 
-	// const db = client.db(`${process.env.DB_NAME}`);
-	// const ordersCollection = db.collection(`${process.env.COLLECTION_NAME}`);
+	const db = client.db(`${process.env.DB_NAME}`);
+	const ordersCollection = db.collection(`${process.env.COLLECTION_NAME}`);
 
-	// const result = (await ordersCollection
-	// 	.find()
-	//	.skip(0)
-	// 	.limit(20)
-	// 	.toArray()) as SensorData[];
-	// console.log(result);
+	const result = (await ordersCollection
+		.find()
+		.skip(skip)
+		.limit(limit)
+		.toArray()) as SensorData[];
+	console.log(result);
 
-	// client.close();
+	client.close();
 
-	// return result;
+	return result;
 	const RESULT = [
 		{
 			_id: new ObjectId('657aad1d41089476f5b05e98'),

@@ -49,7 +49,8 @@ export const options = {
 			stacked: true,
 			ticks: {
 				callback: (value: any) => {
-					return value + '°C';
+					// Usuwa niepotrzebne zera z końca
+					return value.toFixed(4).replace(/0+$/, '') + '°C';
 				},
 			},
 		},
@@ -63,7 +64,8 @@ export const options = {
 			ticks: {
 				// stepSize: 0.1,
 				callback: (value: any) => {
-					return value + ' ppm';
+					// Usuwa niepotrzebne zera z końca
+					return value.toFixed(4).replace(/0+$/, '') + ' ppm';
 				},
 			},
 		},
