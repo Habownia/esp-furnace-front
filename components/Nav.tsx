@@ -3,6 +3,7 @@
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { FaMagnifyingGlass, FaTable } from 'react-icons/fa6';
 import { FaRegBell, FaChartLine, FaHome } from 'react-icons/fa';
+import { CgProfile } from 'react-icons/cg';
 import Link from 'next/link';
 
 function Home() {
@@ -57,7 +58,7 @@ function Home() {
 			</div>
 
 			<div className='navbar-center'>
-				<Link href='/' className='btn btn-ghost text-xl'>
+				<Link href='/' className='btn btn-ghost text-xl font-mono'>
 					esp-furnace
 				</Link>
 			</div>
@@ -73,6 +74,10 @@ function Home() {
 						<FaRegBell size={20} />
 						<span className='badge badge-xs badge-primary indicator-item'></span>
 					</div>
+				</button>
+				{/* Profile */}
+				<button className='btn btn-ghost btn-circle'>
+					<CgProfile size={25} />
 				</button>
 			</div>
 		</div>
