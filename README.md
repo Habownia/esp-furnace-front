@@ -6,6 +6,8 @@ It's an application that shows data from sensors connected to the ESP-8266 modul
 
 ## ⚙️ Installation ⚙️
 
+### 1. Clone the repository and install dependencies
+
 ```bash
 # Clone this repo from github
 git clone https://github.com/Habownia/esp-furnace-front.git
@@ -15,14 +17,34 @@ cd esp-furnace-front
 yarn
 ```
 
-### 👷 Build 👷
+### 2. Configure your local environment
+
+Copy the .env.local.example file in this directory to .env.local (which will be ignored by Git):
+
+```bash
+cp .env.local.example .env.local
+```
+
+Fill out the data
+
+```
+MONGO_URI=<your_mongo_uri>
+DB_NAME=<your_database_name>
+COLLECTION_NAME=<your_collection_name>
+```
+
+### 3a. Build
+
+Build the app and enjoy!
 
 ```bash
 yarn build
 yarn start
 ```
 
-### 🧑‍💻 Develop 🧑‍💻
+### 3b. Develop
+
+Start developing
 
 ```bash
 yarn dev
