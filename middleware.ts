@@ -12,4 +12,10 @@ export default async function middleware(req: NextRequestWithAuth) {
 	if (req.nextUrl.pathname.startsWith('/login') && isAuthenticated) {
 		return NextResponse.redirect(new URL('/account', req.url)); //TODO account page
 	}
+
+	if (req.nextUrl.pathname.startsWith('/chart'))
+		return NextResponse.redirect(new URL('/chart/1', req.url));
 }
+
+// secured pages (unauthenticated users cannot enter)
+export const config = { matcher: ['/chart', '/table'] };
