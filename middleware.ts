@@ -10,7 +10,7 @@ export default async function middleware(req: NextRequestWithAuth) {
 	console.log(req.nextUrl);
 
 	if (req.nextUrl.pathname.startsWith('/login') && isAuthenticated) {
-		return NextResponse.redirect(new URL('/account', req.url)); //TODO account page
+		return NextResponse.redirect(new URL('/account', req.url));
 	}
 
 	if (req.nextUrl.pathname.startsWith('/chart'))
