@@ -1,9 +1,9 @@
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-const handler = NextAuth({
+export const options = {
 	providers: [
 		CredentialsProvider({
 			id: 'credentials',
@@ -20,7 +20,9 @@ const handler = NextAuth({
 				},
 			},
 			async authorize(credentials) {
-				const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
+				const client = await MongoClient.connect(
+					`${process.env.MONGO_URI}`
+				);
 				const usersCollection = client
 					.db(process.env.DB_NAME)
 					.collection('users');
@@ -52,6 +54,8 @@ const handler = NextAuth({
 	session: {
 		strategy: 'jwt',
 	},
-});
+} satisfies NextAuthOptions;
+
+const handler = NextAuth(options);
 
 export { handler as GET, handler as POST };

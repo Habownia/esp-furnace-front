@@ -1,17 +1,30 @@
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
-	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
-	const users = client.db(process.env.DB_NAME).collection('users');
+export const dynamic = 'force-dynamic'; // defaults to force-static
 
-	const password = bcrypt.hashSync('password', 10);
-	await users.insertOne({
-		email: 'admin@example.com',
-		password: password,
-		role: 'admin',
-	});
+export async function GET(req: NextRequest, res: NextResponse) {
+	try {
+		// gets Parameters from url
+		const email = req.nextUrl.searchParams.get('email')!;
+		const password = req.nextUrl.searchParams.get('password')!;
 
-	return NextResponse.json({ success: true });
+		const passwordHashed = bcrypt.hashSync(password, 10);
+
+		// MongoDB
+		const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
+		const users = client.db(process.env.DB_NAME).collection('users');
+
+		//Creates user
+		await users.insertOne({
+			email: email,
+			password: passwordHashed,
+			role: 'user',
+		});
+
+		return NextResponse.json({ success: true });
+	} catch (error) {
+		return NextResponse.json({ success: false, error });
+	}
 }
