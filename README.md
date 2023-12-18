@@ -28,9 +28,19 @@ cp .env.local.example .env.local
 Fill out the data
 
 ```
+
 MONGO_URI=<your_mongo_uri>
 DB_NAME=<your_database_name>
 COLLECTION_NAME=<your_collection_name>
+NEXTAUTH_SECRET=<your secret>
+```
+
+#### 2a. NEXTAUTH_SECRET
+
+To generate NEXTAUTH_SECRET you can use https://www.cryptool.org/en/cto/openssl, but openssl is recommended
+
+```bash
+openssl rand -base64 32
 ```
 
 ### 3a. Build
@@ -52,10 +62,10 @@ yarn dev
 
 ## 🛠️ Dependencies 🛠️
 
-- mongodb
-- tailwind
-- typescript
-- daisyui
-- chart.js
-- react-chartjs-2
-- react-icons
+-   mongodb
+-   tailwind
+-   typescript
+-   daisyui
+-   chart.js
+-   react-chartjs-2
+-   react-icons
