@@ -16,11 +16,6 @@
 	}
 }
 
-* {
-	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-		'Liberation Mono', 'Courier New', monospace;
-}
-
 body {
 	color: rgb(var(--foreground-rgb));
 	background: linear-gradient(
