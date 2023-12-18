@@ -11,7 +11,7 @@ function renderRegister(isRegistered: boolean | undefined) {
 		return (
 			<div
 				role='alert'
-				className='alert alert-success font-mono w-1/2 mt-20'
+				className='alert alert-success w-1/2 mt-20'
 			>
 				<FaRegCheckCircle />
 				<span>Udało się zarejestrować użytkownika!</span>
@@ -21,7 +21,7 @@ function renderRegister(isRegistered: boolean | undefined) {
 		return (
 			<div
 				role='alert'
-				className='alert alert-error font-mono w-1/2 mt-20'
+				className='alert alert-error w-1/2 mt-20'
 			>
 				<IoMdCloseCircleOutline />
 				<span>
@@ -46,7 +46,7 @@ function RegisterPage() {
 	return (
 		<div className='h-[86.5vh] flex flex-col items-center'>
 			<div className='flex flex-col items-center lg:w-1/3'>
-				<h1 className='my-6 font-mono text-2xl'>Zarejestruj się</h1>
+				<h1 className='my-6 text-2xl'>Zarejestruj się</h1>
 
 				<RegisterForm setIsRegistered={setIsRegistered} />
 			</div>

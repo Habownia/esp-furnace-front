@@ -63,7 +63,7 @@ function Home() {
 			</div>
 
 			<div className='navbar-center'>
-				<Link href='/' className='btn btn-ghost text-xl font-mono'>
+				<Link href='/' className='btn btn-ghost text-xl'>
 					esp-furnace
 				</Link>
 			</div>

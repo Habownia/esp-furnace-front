@@ -35,7 +35,7 @@ export default async function Table() {
 		);
 	});
 	return (
-		<div className='flex h-screen bg-zinc-900 font-mono'>
+		<div className='flex h-screen bg-zinc-900'>
 			<table className='table text-center'>
 				<thead>
 					<tr>

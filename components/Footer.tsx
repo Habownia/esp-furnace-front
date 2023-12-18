@@ -2,7 +2,7 @@ import { FaGithub } from 'react-icons/fa';
 
 function Footer() {
 	return (
-		<footer className=' footer footer-center p-4 bg-base-300 font-mono text-base-content'>
+		<footer className=' footer footer-center p-4 bg-base-300 text-base-content'>
 			<p className='flex items-center'>
 				Copyright © 2023 - All right reserved by{' '}
 				<a
