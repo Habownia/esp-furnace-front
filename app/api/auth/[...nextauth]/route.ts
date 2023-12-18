@@ -3,7 +3,11 @@ import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const options = {
+export const OPTIONS = {
+	//custom pages
+	pages: {
+		signIn: '/login',
+	},
 	providers: [
 		CredentialsProvider({
 			id: 'credentials',
@@ -53,9 +57,10 @@ export const options = {
 	],
 	session: {
 		strategy: 'jwt',
+		maxAge: 365 * 24 * 60 * 60, // 365 Days
 	},
 } satisfies NextAuthOptions;
 
-const handler = NextAuth(options);
+const handler = NextAuth(OPTIONS);
 
 export { handler as GET, handler as POST };

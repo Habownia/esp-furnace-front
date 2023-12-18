@@ -8,11 +8,11 @@ import { getServerSession } from 'next-auth/next';
 import React from 'react';
 import { redirect } from 'next/navigation';
 
-import { options } from '../api/auth/[...nextauth]/route';
+import { OPTIONS } from '../api/auth/[...nextauth]/route';
 
 export default async function RestrictedPage() {
 	// get the session
-	const session = await getServerSession(options);
+	const session = await getServerSession(OPTIONS);
 
 	// redirect to signin if there is no session.
 	if (!session?.user) {
