@@ -1,5 +1,5 @@
 'use client';
-import { OPTIONS } from '@/app/api/auth/[...nextauth]/route';
+// import { authOptions } from '@/lib/NextAuthOptions';
 import { Field, Formik, FormikErrors } from 'formik';
 import { signIn } from 'next-auth/react';
 
