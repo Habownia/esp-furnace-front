@@ -16,19 +16,30 @@ const validate = (values: FormValues) => {
 	return errors;
 };
 
-const onSubmit = async (values: FormValues) => {
+const handleSubmit = async (
+	values: FormValues,
+	setIsRegistered: any,
+	resetForm: any
+) => {
 	const res = await fetch(
 		`/api/register?email=${values.email}&password=${values.password}`
 	);
 	const isSucceded = await res.json();
+
+	setIsRegistered(isSucceded.success);
+
+	// resets form if registered
+	isSucceded ? resetForm(values) : '';
 };
 
-export default function RegisterForm() {
+export default function RegisterForm(props: { setIsRegistered: any }) {
 	return (
 		<Formik
 			initialValues={{ email: '', password: '' }}
 			validate={validate}
-			onSubmit={onSubmit}
+			onSubmit={(values: FormValues, { resetForm }) =>
+				handleSubmit(values, props.setIsRegistered, resetForm)
+			}
 		>
 			{({ errors, touched, handleSubmit, isSubmitting }) => (
 				<form
