@@ -7,15 +7,25 @@ export default async function middleware(req: NextRequestWithAuth) {
 	const token = await getToken({ req });
 	const isAuthenticated = !!token;
 
-	console.log(req.nextUrl);
+	const urlPathName = req.nextUrl.pathname;
 
-	if (req.nextUrl.pathname.startsWith('/login') && isAuthenticated) {
+	// disabled pages
+	//todo make this more scalable
+	if (urlPathName.startsWith('/chart') && !isAuthenticated) {
+		return NextResponse.redirect(new URL('/', req.url));
+	}
+
+	if (urlPathName.startsWith('/table') && !isAuthenticated) {
+		return NextResponse.redirect(new URL('/', req.url));
+	}
+	//end of disabled pages
+
+	if (urlPathName.startsWith('/login') && isAuthenticated) {
 		return NextResponse.redirect(new URL('/account', req.url));
 	}
 
-	if (req.nextUrl.pathname.startsWith('/chart'))
+	if (urlPathName.startsWith('/chart') && isAuthenticated)
 		return NextResponse.redirect(new URL('/chart/1', req.url));
 }
 
-// secured pages (unauthenticated users cannot enter)
-export const config = { matcher: ['/chart', '/table'] };
+export const config = { matcher: ['/login', '/chart/:path*', '/table'] };
