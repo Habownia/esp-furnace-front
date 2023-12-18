@@ -20,3 +20,17 @@ export function getDayTime(data: SensorData[]) {
 
 	return date;
 }
+
+// returns date in format hh:mm DD/MM
+export function getStringifiedDate(date: Date) {
+	const addZero = (num: number) => {
+		return num >= 10 ? num : `0${num}`;
+	};
+
+	const hours = addZero(date.getHours());
+	const minutes = addZero(date.getMinutes());
+	const day = addZero(date.getDate());
+	const month = addZero(date.getMonth());
+
+	return `${hours}:${minutes} ${day}/${month}`;
+}

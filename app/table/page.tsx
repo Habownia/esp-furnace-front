@@ -1,5 +1,5 @@
 import { getData } from '@/helpers/dbHelper';
-import { getTimestamp } from '@/helpers/getTime';
+import { getStringifiedDate, getTimestamp } from '@/helpers/getTime';
 
 import { GiGasStove } from 'react-icons/gi';
 import { FaTemperatureFull } from 'react-icons/fa6';
@@ -13,29 +13,40 @@ export default async function Table() {
 	const data = await getData();
 	const elem = data.map((elem: SensorData) => {
 		const date = getTimestamp(elem._id.toString());
-		const dateStrigified = `${date.getHours()}:${date.getMinutes()} ${date.getDate()}/${date.getMonth()}`;
+		const stringifiedDate = getStringifiedDate(date);
 
 		return (
 			<tr key={elem._id.toString()} className='hover'>
-				<th className='text-xl text-purple-200'>{dateStrigified}</th>
+				<th className='text-xl text-purple-200'>{stringifiedDate}</th>
 				<td className='text-xl'>
-					<span className='text-2xl font-bold'>{elem.temperature.value}</span>
+					<span className='text-2xl font-bold'>
+						{elem.temperature.value}
+					</span>
 					°C
 				</td>
 				<td className='text-xl'>
-					<span className='text-2xl font-bold'>{elem.smoke.value[0]}</span> ppm
+					<span className='text-2xl font-bold'>
+						{elem.smoke.value[0]}
+					</span>{' '}
+					ppm
 				</td>
 				<td className='text-xl'>
-					<span className='text-2xl font-bold'>{elem.smoke.value[1]}</span> ppm
+					<span className='text-2xl font-bold'>
+						{elem.smoke.value[1]}
+					</span>{' '}
+					ppm
 				</td>
 				<td className='text-xl'>
-					<span className='text-2xl font-bold'>{elem.smoke.value[2]}</span> ppm
+					<span className='text-2xl font-bold'>
+						{elem.smoke.value[2]}
+					</span>{' '}
+					ppm
 				</td>
 			</tr>
 		);
 	});
 	return (
-		<div className='flex h-screen bg-zinc-900'>
+		<div className='flex bg-zinc-900 '>
 			<table className='table text-center'>
 				<thead>
 					<tr>

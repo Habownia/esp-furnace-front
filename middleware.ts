@@ -18,14 +18,20 @@ export default async function middleware(req: NextRequestWithAuth) {
 	if (urlPathName.startsWith('/table') && !isAuthenticated) {
 		return NextResponse.redirect(new URL('/', req.url));
 	}
+
+	if (urlPathName.startsWith('/register') && !isAuthenticated) {
+		return NextResponse.redirect(new URL('/', req.url));
+	}
 	//end of disabled pages
 
 	if (urlPathName.startsWith('/login') && isAuthenticated) {
 		return NextResponse.redirect(new URL('/account', req.url));
 	}
 
-	if (urlPathName.startsWith('/chart') && isAuthenticated)
-		return NextResponse.redirect(new URL('/chart/1', req.url));
+	// if (urlPathName.startsWith('/chart') && isAuthenticated)
+	// 	return NextResponse.redirect(new URL('/chart/1', req.url));
 }
 
-export const config = { matcher: ['/login', '/chart/:path*', '/table'] };
+export const config = {
+	matcher: ['/login', '/chart/:path*', '/table', '/register'],
+};
