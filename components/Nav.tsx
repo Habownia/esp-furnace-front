@@ -3,8 +3,9 @@
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { FaMagnifyingGlass, FaTable } from 'react-icons/fa6';
 import { FaRegBell, FaChartLine, FaHome } from 'react-icons/fa';
-import { CgProfile } from 'react-icons/cg';
+
 import Link from 'next/link';
+import ProfileButton from './ProfileButton';
 
 function Home() {
 	// Closing dropdown by clicking a link
@@ -19,7 +20,11 @@ function Home() {
 		<div className='navbar bg-base-100'>
 			<div className='navbar-start'>
 				<div className='dropdown'>
-					<div tabIndex={0} role='button' className='btn btn-ghost btn-circle'>
+					<div
+						tabIndex={0}
+						role='button'
+						className='btn btn-ghost btn-circle'
+					>
 						<RxHamburgerMenu size={22} />
 					</div>
 					<ul
@@ -76,9 +81,7 @@ function Home() {
 					</div>
 				</button>
 				{/* Profile */}
-				<button className='btn btn-ghost btn-circle'>
-					<CgProfile size={25} />
-				</button>
+				<ProfileButton />
 			</div>
 		</div>
 	);

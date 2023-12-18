@@ -5,14 +5,11 @@
 // About getServerSession https://next-auth.js.org/configuration/nextjs#getserversession
 
 import { getServerSession } from 'next-auth/next';
-import React from 'react';
 import { redirect } from 'next/navigation';
-
-import { OPTIONS } from '../api/auth/[...nextauth]/route';
 
 export default async function RestrictedPage() {
 	// get the session
-	const session = await getServerSession(OPTIONS);
+	const session = await getServerSession();
 
 	// redirect to signin if there is no session.
 	if (!session?.user) {
@@ -24,7 +21,7 @@ export default async function RestrictedPage() {
 	// display the page
 	return (
 		<div>
-			<h1>Welcome to the Restricted Page, {session?.user?.name}</h1>
+			<h1>Welcome to the Restricted Page, {session?.user?.email}</h1>
 		</div>
 	);
 }
