@@ -51,7 +51,7 @@ function Home() {
 						</li>
 						<li onClick={handleClick}>
 							<Link
-								href='/chart/1'
+								href='/chart'
 								className='text-xl hover:bg-purple-700 hover:bg-opacity-50'
 							>
 								<FaChartLine />

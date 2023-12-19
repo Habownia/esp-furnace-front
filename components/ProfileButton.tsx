@@ -7,13 +7,7 @@ async function ProfileButton() {
 	const router = useRouter();
 
 	async function handleProfile() {
-		const session = await getSession();
-		// redirect to login page if there is no session.
-		if (session?.user) {
-			router.push('/account');
-		} else {
-			router.push('/login');
-		}
+		router.push('/login');
 	}
 
 	return (

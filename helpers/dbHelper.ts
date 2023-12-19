@@ -3,7 +3,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 import type { SensorData } from '@/types/sensorData';
 
 export async function getData(page = 1, limit = 30) {
-	if (process.env.NODE_ENV == 'development') {
+	if (process.env.NODE_ENV == 'development' && process.env.USE_DB != 'true')
 		// Dummy Data
 		return [
 			{
@@ -67,7 +67,7 @@ export async function getData(page = 1, limit = 30) {
 				smoke: { value: [0.00718, 0.00469, 0.01932] },
 			},
 		];
-	}
+
 	// setup MongoClient
 	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
 
@@ -92,7 +92,8 @@ export async function getData(page = 1, limit = 30) {
 }
 
 export async function getDocumentCount() {
-	if (process.env.NODE_ENV == 'development') return 10;
+	if (process.env.NODE_ENV == 'development' && process.env.USE_DB != 'true')
+		return 10;
 
 	// setup MongoClient
 	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);

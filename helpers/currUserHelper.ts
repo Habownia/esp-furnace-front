@@ -9,7 +9,10 @@ type User = {
 };
 
 export async function getCurrUser() {
-	if (process.env.NODE_ENV == 'development')
+	if (
+		process.env.NODE_ENV == 'development' &&
+		process.env.USE_USERDB != 'true'
+	)
 		return {
 			_id: new ObjectId('6580238551a59a894f71bd17'),
 			email: 'test@test.com',

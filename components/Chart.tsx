@@ -49,6 +49,7 @@ export const options = {
 			},
 			stacked: true,
 			ticks: {
+				stepSize: 2,
 				callback: (value: any) => {
 					// Usuwa niepotrzebne zera z końca
 					return value.toFixed(4).replace(/0+$/, '') + '°C';
