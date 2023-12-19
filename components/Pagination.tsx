@@ -16,13 +16,21 @@ function Pagination(props: { elements: number; currPage: number }) {
 	return (
 		<div className='join my-5'>
 			{currPage >= 2 && (
-				<Link href={'/chart/1'} className='join-item btn'>
+				<Link
+					href={'/chart/1'}
+					replace={true}
+					className='join-item btn'
+				>
 					1
 				</Link>
 			)}
 
 			{currPage >= 3 && (
-				<Link href={`/chart/${currPage - 1}`} className='join-item btn'>
+				<Link
+					href={`/chart/${currPage - 1}`}
+					replace={true}
+					className='join-item btn'
+				>
 					«
 				</Link>
 			)}
@@ -30,12 +38,20 @@ function Pagination(props: { elements: number; currPage: number }) {
 			<button className='join-item btn bg-purple-600'>{currPage}</button>
 
 			{currPage <= elements - 2 && (
-				<Link href={`/chart/${currPage + 1}`} className='join-item btn'>
+				<Link
+					href={`/chart/${currPage + 1}`}
+					replace={true}
+					className='join-item btn'
+				>
 					»
 				</Link>
 			)}
 			{currPage <= elements - 1 && (
-				<Link href={`/chart/${elements}`} className='join-item btn'>
+				<Link
+					href={`/chart/${elements}`}
+					replace={true}
+					className='join-item btn'
+				>
 					{elements}
 				</Link>
 			)}
