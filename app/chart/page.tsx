@@ -1,11 +1,16 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+import { getChartData } from '@/helpers/getChartData';
+
 import Chart from '@/components/Chart';
 import Pagination from '@/components/Pagination';
+import {
+	PaginationLoading,
+	ChartLoading,
+} from '@/components/loading/chartLoading';
 
 import type { SensorData } from '@/types/sensorData';
-import { getChartData } from '@/helpers/getChartData';
 
 const LIMIT = 30;
 
@@ -32,19 +37,23 @@ export default function App() {
 	}, [page]);
 
 	return (
-		<div className=' flex items-center flex-col gap-5'>
-			{dataDb && (
+		<div className=' flex items-center flex-col gap-5 min-h-screen'>
+			{dataDb ? (
 				<Pagination
 					elements={Math.ceil(dataDb.documentCount / LIMIT)}
 					currPage={page}
 					setPage={setPage}
 				/>
+			) : (
+				<PaginationLoading />
 			)}
-			{dataDb && (
+			{dataDb ? (
 				<Chart
 					// Eliminating warning
 					dataDb={JSON.parse(JSON.stringify(dataDb.data))}
 				/>
+			) : (
+				<ChartLoading />
 			)}
 		</div>
 	);
