@@ -22,6 +22,7 @@ export async function GET(req: NextRequest) {
 			password: passwordHashed,
 			role: 'user',
 		});
+		client.close();
 
 		return NextResponse.json({ success: true });
 	} catch (error) {

@@ -24,13 +24,16 @@ export const authOptions = {
 				},
 			},
 			async authorize(credentials) {
-				const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
+				const client = await MongoClient.connect(
+					`${process.env.MONGO_URI}`
+				);
 				const usersCollection = client
 					.db(process.env.DB_NAME)
 					.collection('users');
 
 				const email = credentials?.email.toLowerCase();
 				const user = await usersCollection.findOne({ email });
+				client.close();
 
 				if (!user) {
 					throw new Error('User does not exist.');
