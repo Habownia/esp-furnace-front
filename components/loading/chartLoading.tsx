@@ -10,7 +10,7 @@ export function PaginationLoading() {
 
 export function ChartLoading() {
 	return (
-		<div className=' w-[90vw] h-[90vh] bg-zinc-900 rounded-3xl mb-10 animate-pulse'>
+		<div className=' w-[90vw] h-[90vh] bg-zinc-800 rounded-3xl mb-10 animate-pulse'>
 			&nbsp;
 		</div>
 	);

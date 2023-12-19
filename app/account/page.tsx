@@ -10,9 +10,9 @@ async function Account() {
 	const currUser = await getCurrUser();
 
 	return (
-		<div className='flex flex-col gap-4 items-center justify-center'>
+		<div className='flex-center flex-col gap-4 min-h-[86.5vh]'>
 			<h1 className='text-3xl my-4'>Dane użytkownika:</h1>
-			<div className='flex items-center justify-center gap-4 font-sans text-xl'>
+			<div className='flex-center gap-4 font-sans text-xl'>
 				<Suspense fallback={<LoadingUserData />}>
 					<div className='avatar placeholder'>
 						<div className='bg-neutral text-neutral-content rounded-full w-24'>

@@ -10,14 +10,9 @@ import {
 	ChartLoading,
 } from '@/components/loading/chartLoading';
 
-import type { SensorData } from '@/types/sensorData';
+import type { chartData } from '@/types/chartData';
 
 const LIMIT = 30;
-
-type chartData = {
-	data: SensorData[];
-	documentCount: number;
-};
 
 export default function App() {
 	// const documentCount = await getDocumentCount();
@@ -37,7 +32,7 @@ export default function App() {
 	}, [page]);
 
 	return (
-		<div className=' flex items-center flex-col gap-5 min-h-screen'>
+		<div className=' flex items-center flex-col gap-5 min-h-screen bg-zinc-900'>
 			{dataDb ? (
 				<Pagination
 					elements={Math.ceil(dataDb.documentCount / LIMIT)}
