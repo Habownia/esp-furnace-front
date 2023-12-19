@@ -12,11 +12,11 @@ export default async function middleware(req: NextRequestWithAuth) {
 	// disabled pages
 	//todo make this more scalable
 	if (urlPathName.startsWith('/chart') && !isAuthenticated) {
-		return NextResponse.redirect(new URL('/', req.url));
+		return NextResponse.redirect(new URL('/login', req.url));
 	}
 
 	if (urlPathName.startsWith('/table') && !isAuthenticated) {
-		return NextResponse.redirect(new URL('/', req.url));
+		return NextResponse.redirect(new URL('/login', req.url));
 	}
 
 	if (urlPathName.startsWith('/register') && !isAuthenticated) {

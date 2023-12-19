@@ -7,7 +7,7 @@ import Pagination from '@/components/Pagination';
 import type { SensorData } from '@/types/sensorData';
 import { getChartData } from '@/helpers/getChartData';
 
-const LIMIT = 5;
+const LIMIT = 30;
 
 type chartData = {
 	data: SensorData[];
