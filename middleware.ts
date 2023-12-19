@@ -19,7 +19,7 @@ export default async function middleware(req: NextRequestWithAuth) {
 		return NextResponse.redirect(new URL('/login', req.url));
 	}
 
-	if (urlPathName.startsWith('/register') && !isAuthenticated) {
+	if (urlPathName.startsWith('/register')) {
 		return NextResponse.redirect(new URL('/', req.url));
 	}
 	//end of disabled pages
