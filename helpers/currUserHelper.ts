@@ -9,6 +9,15 @@ type User = {
 };
 
 export async function getCurrUser() {
+	if (process.env.NODE_ENV == 'development')
+		return {
+			_id: new ObjectId('6580238551a59a894f71bd17'),
+			email: 'test@test.com',
+			password:
+				'$2b$10$FP/0hUt2Q6fMma4guxdU1uEsB5HE/Xim3XXp4gMQTjEgetCNpSsqm',
+			role: 'user',
+		} as User;
+
 	// get the session
 	const session = await getServerSession();
 	// gets the logged user email
