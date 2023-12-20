@@ -35,5 +35,5 @@ export default async function middleware(req: NextRequestWithAuth) {
 }
 
 export const config = {
-	matcher: ['/login', '/chart/:path*', '/table', '/register'],
+	matcher: ['/login', '/chart/:path*', '/table', '/register', '/dashboard'],
 };

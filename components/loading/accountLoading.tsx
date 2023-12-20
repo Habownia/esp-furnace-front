@@ -4,23 +4,19 @@ export function LoadingUserData() {
 	return (
 		<>
 			<div className='avatar placeholder'>
-				<div className='bg-neutral text-neutral-content rounded-full w-24'>
-					<span className='text-3xl'>L</span>
+				<div className='bg-neutral text-neutral-content rounded-full w-24 animate-pulse'>
+					&nbsp;
 				</div>
 			</div>
-			<div>
+			<div className='w-44 flex flex-col gap-2'>
 				{/*TODO dodać imię do db <div>
 							Imię: <span>{currUser.email}</span>
 						</div> */}
-				<div>
-					<span className='font-bold'>
-						Email: <span className='font-mono'>loading</span>
-					</span>
+				<div className=' bg-gray-800 rounded-lg animate-pulse'>
+					&nbsp;
 				</div>
-				<div>
-					<span className='font-bold'>
-						Rola: <span className='font-mono'>loading</span>
-					</span>
+				<div className=' bg-gray-800 rounded-lg animate-pulse'>
+					&nbsp;
 				</div>
 			</div>
 		</>
@@ -29,7 +25,7 @@ export function LoadingUserData() {
 
 export function LoadingLogoutButton() {
 	return (
-		<button className='btn btn-disabled btn-outline btn-error'>
+		<button className='btn btn-disabled btn-outline btn-error animate-pulse'>
 			<IoLogOutOutline size={25} />
 			Wyloguj
 		</button>

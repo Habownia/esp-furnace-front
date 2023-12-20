@@ -10,32 +10,36 @@ async function Account() {
 	const currUser = await getCurrUser();
 
 	return (
-		<div className='flex-center flex-col gap-4 min-h-[86.5vh]'>
+		<div className='flex-center flex-col gap-4 min-h-screen bg-zinc-900'>
 			<h1 className='text-3xl my-4'>Dane użytkownika:</h1>
 			<div className='flex-center gap-4 font-sans text-xl'>
-				<Suspense fallback={<LoadingUserData />}>
-					<div className='avatar placeholder'>
-						<div className='bg-neutral text-neutral-content rounded-full w-24'>
-							<span className='text-3xl'>
-								{currUser?.email[0].toUpperCase()}
-							</span>
+				{currUser ? (
+					<>
+						<div className='avatar placeholder'>
+							<div className='bg-neutral text-neutral-content rounded-full w-24'>
+								<span className='text-3xl'>
+									{currUser?.email[0].toUpperCase()}
+								</span>
+							</div>
 						</div>
-					</div>
-					<div>
-						{/* TODO dodać imię do db{' '} */}
-						{/* <div>
+						<div>
+							{/* TODO dodać imię do db{' '} */}
+							{/* <div>
 							Imię: <span>{currUser.email}</span>
 						</div> */}
-						<div>
-							<span className='font-bold'>Email: </span>{' '}
-							{currUser.email}
+							<div>
+								<span className='font-bold'>Email: </span>{' '}
+								{currUser.email}
+							</div>
+							<div>
+								<span className='font-bold'>Rola: </span>{' '}
+								{currUser.role}
+							</div>
 						</div>
-						<div>
-							<span className='font-bold'>Rola: </span>{' '}
-							{currUser.role}
-						</div>
-					</div>
-				</Suspense>
+					</>
+				) : (
+					<LoadingUserData />
+				)}
 			</div>
 			<div className='m-10'>
 				<Suspense fallback={<LoadingLogoutButton />}>
