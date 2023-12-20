@@ -3,6 +3,12 @@ import DashboardCard from '@/components/DashboardCard';
 
 import { RiDashboard2Line } from 'react-icons/ri';
 
+import { FaDatabase } from 'react-icons/fa';
+import { GiGasStove, GiCoalWagon } from 'react-icons/gi';
+import { FaTemperatureFull } from 'react-icons/fa6';
+import { WiSmoke } from 'react-icons/wi';
+import HeapCard from '@/components/HeapCard';
+
 async function Dashboard() {
 	const data = await getNDataFromEnd(2);
 	// console.log(data);
@@ -39,52 +45,36 @@ async function Dashboard() {
 				<RiDashboard2Line />
 				Dashboard
 			</h1>
-			<div className='flex items-center flex-wrap gap-5 m-10'>
+			<div className='flex-center flex-wrap  gap-5 m-10'>
 				<DashboardCard
+					name='Temperatura'
 					curr={temp.curr}
 					prev={temp.prev}
-					name='Temperatura'
+					Icon={FaTemperatureFull}
 					unit='°C'
 				/>
 				<DashboardCard
+					name='Dym'
 					curr={smoke.curr}
 					prev={smoke.prev}
-					name='Dym'
+					Icon={WiSmoke}
 					unit='ppm'
 				/>
 				<DashboardCard
+					name='LPG'
 					curr={lpg.curr}
 					prev={lpg.prev}
-					name='LPG'
+					Icon={GiGasStove}
 					unit='ppm'
 				/>
 				<DashboardCard
+					name='CO'
 					curr={co.curr}
 					prev={co.prev}
-					name='CO'
+					Icon={GiCoalWagon}
 					unit='ppm'
 				/>
-				<div className='card w-96  bg-base-100 shadow-xl'>
-					<div className='card-body h-52 flex items-center justify-between'>
-						{/* Name */}
-						<h2 className='card-title text-3xl'>Wolny stos</h2>
-
-						<div className='text-gray-500'>
-							------------------------------
-						</div>
-
-						<div>
-							<p className='text-center text-xl'>
-								{data[0].freeHeap}b
-							</p>
-							<progress
-								className='progress w-56'
-								value={data[0].freeHeap}
-								max='524288'
-							/>
-						</div>
-					</div>
-				</div>
+				<HeapCard heapSize={data[0].freeHeap} />
 			</div>
 		</div>
 	);

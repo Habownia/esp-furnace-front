@@ -1,8 +1,5 @@
-import {
-	FaArrowDownLong,
-	FaArrowUpLong,
-	FaTemperatureHigh,
-} from 'react-icons/fa6';
+import { IconType } from 'react-icons';
+import { FaArrowDownLong, FaArrowUpLong } from 'react-icons/fa6';
 import { IoIosRemoveCircle } from 'react-icons/io';
 
 function DashboardCard(props: {
@@ -10,6 +7,7 @@ function DashboardCard(props: {
 	prev: number;
 	name: string;
 	unit: string;
+	Icon: IconType;
 }) {
 	let diffrence = props.curr - props.prev;
 	diffrence = parseFloat(diffrence.toFixed(4));
@@ -18,15 +16,9 @@ function DashboardCard(props: {
 
 	const tempMark = (
 		<span className='flex items-center gap-1 text-2xl'>
-			{diffrence > 0 && (
-				<FaArrowUpLong size={20} className=' text-green-600' />
-			)}
-			{diffrence < 0 && (
-				<FaArrowDownLong size={20} className=' text-red-600 ' />
-			)}
-			{diffrence == 0 && (
-				<IoIosRemoveCircle size={20} className=' text-gray-200' />
-			)}
+			{diffrence > 0 && <FaArrowUpLong className=' text-green-600' />}
+			{diffrence < 0 && <FaArrowDownLong className=' text-red-600 ' />}
+			{diffrence == 0 && <IoIosRemoveCircle className=' text-gray-200' />}
 
 			<span className={`text-${color}-600 font-bold`}>
 				{diffrence} {props.unit}
@@ -38,8 +30,8 @@ function DashboardCard(props: {
 		<div className='card w-96  bg-base-100 shadow-xl'>
 			<div className='card-body h-52 flex items-center justify-between text-center'>
 				{/* Name */}
-				<h2 className='card-title text-3xl'>
-					<FaTemperatureHigh />
+				<h2 className='card-title text-3xl flex-center gap-4'>
+					<props.Icon size={25} />
 					{props.name}
 				</h2>
 
