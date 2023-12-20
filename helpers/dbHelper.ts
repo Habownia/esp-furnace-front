@@ -108,3 +108,40 @@ export async function getDocumentCount() {
 
 	return result;
 }
+
+export async function getNDataFromEnd(n: number) {
+	if (process.env.NODE_ENV == 'development' && process.env.USE_DB != 'true') {
+		// Dummy Data
+		return [
+			{
+				_id: new ObjectId('657aad28469df2e096b8446b'),
+				temperature: { value: 21.19 },
+				freeHeap: 21616,
+				smoke: { value: [0.01156, 0.00897, 0.03228] },
+			},
+			{
+				_id: new ObjectId('657aad1d41089476f5b05e98'),
+				temperature: { value: 25.19 },
+				freeHeap: 43200,
+				smoke: { value: [0.00767, 0.00498, 0.02056] },
+			},
+		];
+	}
+
+	// setup MongoClient
+	const client = await MongoClient.connect(`${process.env.MONGO_URI}`);
+
+	// db, collection name
+	const db = client.db(`${process.env.DB_NAME}`);
+	const dataCollection = db.collection(`${process.env.COLLECTION_NAME}`);
+
+	const result = (await dataCollection
+		.find()
+		.limit(2)
+		.sort({ _id: -1 })
+		.toArray()) as SensorData[];
+
+	client.close();
+
+	return result;
+}

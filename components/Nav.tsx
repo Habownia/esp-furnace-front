@@ -3,6 +3,7 @@
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { FaMagnifyingGlass, FaTable } from 'react-icons/fa6';
 import { FaRegBell, FaChartLine, FaHome } from 'react-icons/fa';
+import { RiDashboard2Line } from 'react-icons/ri';
 
 import Link from 'next/link';
 import ProfileButton from './ProfileButton';
@@ -69,17 +70,17 @@ function Home() {
 			</div>
 
 			<div className='navbar-end'>
-				{/* Magnifying glass */}
-				<button className='btn btn-ghost btn-circle'>
-					<FaMagnifyingGlass size={18} />
-				</button>
+				{/* Dashboard */}
+				<Link href='/dashboard' className='btn btn-ghost btn-circle'>
+					<RiDashboard2Line size={25} />
+				</Link>
 				{/* Bell */}
-				<button className='btn btn-ghost btn-circle'>
+				{/* <button className='btn btn-ghost btn-circle'>
 					<div className='indicator'>
 						<FaRegBell size={20} />
 						<span className='badge badge-xs badge-primary indicator-item'></span>
 					</div>
-				</button>
+				</button> */}
 				{/* Profile */}
 				<ProfileButton />
 			</div>

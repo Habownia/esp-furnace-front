@@ -54,7 +54,7 @@ function Home() {
 						</p>
 
 						<a
-							className='btn text-purple-500 hover:bg-purple-500 hover:border-none btn-outline rounded-3xl h-16'
+							className='btn text-purple-500 hover:bg-purple-500 hover:border-none hover:text-black btn-outline rounded-3xl h-16'
 							href='#hardware'
 						>
 							<FaRegHandPointDown size={30} />
