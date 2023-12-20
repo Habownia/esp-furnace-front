@@ -1,9 +1,9 @@
 export function PaginationLoading() {
 	return (
 		<div className='join my-5 animate-pulse'>
-			<button className='join-item disabled btn bg-purple-600'>1</button>
-			<button className='join-item btn'>2</button>
-			<button className='join-item btn'>3</button>
+			<button className='join-item btn disabled'>1</button>
+			<button className='join-item btn disabled'>2</button>
+			<button className='join-item btn disabled'>3</button>
 		</div>
 	);
 }

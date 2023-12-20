@@ -19,6 +19,10 @@
 	.dashboard-card-cont {
 		@apply card w-72 md:w-96 h-64 md:h-52 bg-base-100 shadow-xl;
 	}
+	.pagination > button {
+		@apply text-base;
+		@apply hover:bg-purple-400 hover:text-gray-950;
+	}
 }
 
 :root {

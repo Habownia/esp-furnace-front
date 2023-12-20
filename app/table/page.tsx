@@ -49,7 +49,7 @@ export default function Table() {
 				<table className='table text-center child-px-0'>
 					<TableHeaders />
 
-					<TableBody data={dataDb?.data} />
+					<TableBody data={JSON.parse(JSON.stringify(dataDb.data))} />
 				</table>
 			) : (
 				<ChartLoading />

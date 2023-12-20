@@ -77,7 +77,7 @@ export const options = {
 };
 
 function Chart(props: { dataDb: SensorData[] }) {
-	const dates = getDayTime(props.dataDb);
+	const dates = getDayTime(JSON.parse(JSON.stringify(props.dataDb)));
 
 	const data = {
 		labels: dates.map(
@@ -95,7 +95,9 @@ function Chart(props: { dataDb: SensorData[] }) {
 			{
 				label: 'Dym',
 				yAxisID: 'y1',
-				data: dates.map((_elem, index) => props.dataDb[index].smoke.value[2]),
+				data: dates.map(
+					(_elem, index) => props.dataDb[index].smoke.value[2]
+				),
 				borderColor: 'rgb(53, 162, 235)',
 				backgroundColor: 'rgba(53, 162, 235, 0.5)',
 			},

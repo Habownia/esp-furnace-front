@@ -18,7 +18,7 @@ function Pagination(props: {
 	});
 
 	return (
-		<div className='join my-5'>
+		<div className='join my-5 pagination'>
 			{currPage >= 2 && (
 				<button
 					onClick={() => props.setPage(1)}
@@ -41,7 +41,9 @@ function Pagination(props: {
 				</button>
 			)}
 
-			<button className='join-item btn bg-purple-600'>{currPage}</button>
+			<button className='join-item btn bg-purple-700 text-gray-300'>
+				{currPage}
+			</button>
 
 			{currPage <= elements - 2 && (
 				<button
