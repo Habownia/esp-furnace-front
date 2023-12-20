@@ -15,6 +15,12 @@
 	}
 }
 
+@layer components {
+	.dashboard-card-cont {
+		@apply card w-72 md:w-96 h-64 md:h-52 bg-base-100 shadow-xl;
+	}
+}
+
 :root {
 	--foreground-rgb: 0, 0, 0;
 	--background-start-rgb: 214, 219, 220;

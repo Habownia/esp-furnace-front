@@ -27,16 +27,20 @@ function DashboardCard(props: {
 	);
 
 	return (
-		<div className='card w-96  bg-base-100 shadow-xl'>
-			<div className='card-body h-52 flex items-center justify-between text-center'>
+		<div className='dashboard-card-cont'>
+			<div className='card-body flex items-center justify-between text-center'>
 				{/* Name */}
 				<h2 className='card-title text-3xl flex-center gap-4'>
 					<props.Icon size={25} />
 					{props.name}
 				</h2>
 
-				<div className='text-gray-500'>
+				<div className='text-gray-500 hidden md:block'>
 					------------------------------
+				</div>
+
+				<div className='text-gray-500 md:hidden'>
+					------------------------
 				</div>
 
 				{/* Diffrence */}

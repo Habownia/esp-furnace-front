@@ -37,7 +37,7 @@ function RegisterPage() {
 	const [isRegistered, setIsRegistered] = useState<boolean>();
 	const [registeredElement, setRegisteredElement] = useState<any>();
 
-	console.log(registeredElement);
+	// console.log(registeredElement);
 
 	useEffect(() => {
 		setRegisteredElement(renderRegister(isRegistered));

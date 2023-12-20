@@ -2,16 +2,20 @@ import { FaDatabase } from 'react-icons/fa6';
 
 function HeapCard(props: { heapSize: number }) {
 	return (
-		<div className='card w-96  bg-base-100 shadow-xl'>
+		<div className='dashboard-card-cont'>
 			<div className='card-body h-52 flex items-center justify-between'>
 				{/* Name */}
 				<h2 className='card-title text-3xl flex-center gap-4'>
 					<FaDatabase size={20} />
-					Wolny stos
+					Wolna sterta
 				</h2>
 
-				<div className='text-gray-500'>
+				<div className='text-gray-500 hidden md:block'>
 					------------------------------
+				</div>
+
+				<div className='text-gray-500 md:hidden'>
+					------------------------
 				</div>
 
 				<div>

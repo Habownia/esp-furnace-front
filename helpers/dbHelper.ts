@@ -83,7 +83,7 @@ export async function getData(page = 1, limit = 30) {
 		.toArray()) as SensorData[];
 
 	// log query result
-	console.log(result);
+	// console.log(result);
 
 	// close connection
 	client.close();
