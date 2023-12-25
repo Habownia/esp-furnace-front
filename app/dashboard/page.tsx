@@ -34,7 +34,7 @@ async function Dashboard() {
 
 	const co = {
 		curr: data[0].smoke.value[1],
-		prev: data[0].smoke.value[1],
+		prev: data[1].smoke.value[1],
 	};
 
 	return (

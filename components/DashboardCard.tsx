@@ -10,7 +10,7 @@ function DashboardCard(props: {
 	Icon: IconType;
 }) {
 	let diffrence = props.curr - props.prev;
-	diffrence = parseFloat(diffrence.toFixed(4));
+	diffrence = parseFloat(diffrence.toFixed(6));
 
 	const color = diffrence > 0 ? 'green' : diffrence < 0 ? 'red' : 'gray';
 
@@ -39,9 +39,7 @@ function DashboardCard(props: {
 					------------------------------
 				</div>
 
-				<div className='text-gray-500 md:hidden'>
-					------------------------
-				</div>
+				<div className='text-gray-500 md:hidden'>------------------------</div>
 
 				{/* Diffrence */}
 				<div className='flex items-center gap-6'>
