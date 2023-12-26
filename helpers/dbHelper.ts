@@ -1,3 +1,4 @@
+'use server';
 import { MongoClient, ObjectId } from 'mongodb';
 
 import type { SensorData } from '@/types/sensorData';
@@ -121,7 +122,7 @@ export async function getNDataFromEnd(n: number) {
 			},
 			{
 				_id: new ObjectId('657aad1d41089476f5b05e98'),
-				temperature: { value: 25.19 },
+				temperature: { value: 27.19 },
 				freeHeap: 43200,
 				smoke: { value: [0.00767, 0.00498, 0.02056] },
 			},

@@ -1,41 +1,27 @@
+'use client';
+import { useEffect, useState } from 'react';
 import { getNDataFromEnd } from '@/helpers/dbHelper';
-import DashboardCard from '@/components/DashboardCard';
 import DashboardLoading from '@/components/loading/DashboardLoading';
 
+// types
+import type { SensorData } from '@/types/sensorData';
+
+// react-icons
 import { RiDashboard2Line } from 'react-icons/ri';
+import DashboardCards from '@/components/DashboardCards';
 
-import { GiGasStove, GiCoalWagon } from 'react-icons/gi';
-import { FaTemperatureFull } from 'react-icons/fa6';
-import { WiSmoke } from 'react-icons/wi';
-import HeapCard from '@/components/HeapCard';
+function Dashboard() {
+	const [data, setData] = useState<SensorData[]>();
 
-async function Dashboard() {
-	const data = await getNDataFromEnd(2);
-	// console.log(data);
+	useEffect(() => {
+		const fetchData = async () => {
+			setData(await getNDataFromEnd(2));
+		};
 
-	//  * 0 : LPG in ppm
-	//  * 1 : CO in ppm
-	//  * 2 : SMOKE in ppm
-
-	const temp = {
-		curr: data[0].temperature.value,
-		prev: data[1].temperature.value,
-	};
-
-	const smoke = {
-		curr: data[0].smoke.value[2],
-		prev: data[1].smoke.value[2],
-	};
-
-	const lpg = {
-		curr: data[0].smoke.value[0],
-		prev: data[1].smoke.value[0],
-	};
-
-	const co = {
-		curr: data[0].smoke.value[1],
-		prev: data[1].smoke.value[1],
-	};
+		//catches errors
+		fetchData().catch(console.error);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className='flex items-center flex-col min-h-screen'>
@@ -45,37 +31,7 @@ async function Dashboard() {
 			</h1>
 			<div className='flex-center flex-wrap  gap-5 m-10'>
 				{data ? (
-					<>
-						<DashboardCard
-							name='Temperatura'
-							curr={temp.curr}
-							prev={temp.prev}
-							Icon={FaTemperatureFull}
-							unit='°C'
-						/>
-						<DashboardCard
-							name='Dym'
-							curr={smoke.curr}
-							prev={smoke.prev}
-							Icon={WiSmoke}
-							unit='ppm'
-						/>
-						<DashboardCard
-							name='LPG'
-							curr={lpg.curr}
-							prev={lpg.prev}
-							Icon={GiGasStove}
-							unit='ppm'
-						/>
-						<DashboardCard
-							name='CO'
-							curr={co.curr}
-							prev={co.prev}
-							Icon={GiCoalWagon}
-							unit='ppm'
-						/>
-						<HeapCard heapSize={data[0].freeHeap} />
-					</>
+					<DashboardCards data={JSON.parse(JSON.stringify(data))} />
 				) : (
 					<DashboardLoading />
 				)}
